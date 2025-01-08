@@ -35,10 +35,6 @@ sudo apt install -y ubuntu-gnome-desktop
 echo "Setting the password for the Ubuntu user..."
 echo "ubuntu:ubuntu" | sudo chpasswd
 
-# Step 9: Clone the 'eliza' repository
-echo "Cloning the eliza repository..."
-git clone https://github.com/Arucard11/eliza.git
-
 # Step 10: Change into the 'eliza' directory
 echo "Changing directory to 'eliza'..."
 cd eliza
