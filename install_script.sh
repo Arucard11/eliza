@@ -16,7 +16,9 @@ nvm install 23
 
 # Step 4: Install the latest version of NPM
 echo "Installing the latest NPM..."
-npm install -g npm@latest
+
+sudo apt install npm
+npm install -g npm
 
 # Step 5: Install the latest version of PNPM
 echo "Installing the latest PNPM..."
