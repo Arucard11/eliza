@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # This script automates the installation of NVM, Node.js, NPM, PNPM, XRDP, Ubuntu GNOME, and then clones and builds the 'eliza' repository.
-
+sudo apt update && sudo apt upgrade
 # Step 1: Install NVM v0.40.1
 echo "Installing NVM v0.40.1..."
 curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.1/install.sh | bash
@@ -42,6 +42,11 @@ echo "ubuntu:ubuntu" | sudo chpasswd
 # Step 10: Change into the 'eliza' directory
 echo "Changing directory to 'eliza'..."
 cd eliza
+
+echo "Installing opus and make"
+
+sudo apt install -y build-essential
+sudo apt install -y python3
 
 # Step 11: Install dependencies using PNPM
 echo "Installing dependencies with PNPM..."
