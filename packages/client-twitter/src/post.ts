@@ -33,7 +33,7 @@ const twitterPostTemplate = `
 {{postDirections}}
 
 # Task: Generate a post in the voice and style and perspective of {{agentName}} @{{twitterUserName}}.
-Write a post that is {{adjective}} about {{topic}} (without mentioning {{topic}} directly), from the perspective of {{agentName}}. Do not add commentary or acknowledge this request, just write the post.
+Write a post that is {{adjective}} about {{topic}}, from the perspective of {{agentName}}. Do not add commentary or acknowledge this request, just write the post.
 Your response should be 1, 2, or 3 sentences (choose the length at random).
 Your response should not contain any questions. Brief, concise statements only. The total character count MUST be less than {{maxTweetLength}}. No emojis. Use \\n\\n (double spaces) between statements if there are multiple statements in your response.`;
 
@@ -111,14 +111,10 @@ export class TwitterPostClient {
             }>("twitter/" + this.twitterUsername + "/lastPost");
 
             const lastPostTimestamp = lastPost?.timestamp ?? 0;
-            const minMinutes =
-                parseInt(this.runtime.getSetting("POST_INTERVAL_MIN")) || 90;
-            const maxMinutes =
-                parseInt(this.runtime.getSetting("POST_INTERVAL_MAX")) || 180;
-            const randomMinutes =
-                Math.floor(Math.random() * (maxMinutes - minMinutes + 1)) +
-                minMinutes;
-            const delay = randomMinutes * 60 * 1000;
+
+            // Set interval to 90 minutes (90 * 60 * 1000 ms)
+            const intervalInMinutes = 90;
+            const delay = intervalInMinutes * 60 * 1000;
 
             if (Date.now() > lastPostTimestamp + delay) {
                 await this.generateNewTweet();
@@ -128,8 +124,9 @@ export class TwitterPostClient {
                 generateNewTweetLoop(); // Set up next iteration
             }, delay);
 
-            elizaLogger.log(`Next tweet scheduled in ${randomMinutes} minutes`);
+            elizaLogger.log(`Next tweet scheduled in ${intervalInMinutes} minutes`);
         };
+
 
         const processActionsLoop = async () => {
             const actionInterval =
