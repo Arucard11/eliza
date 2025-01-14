@@ -6,25 +6,25 @@ sudo apt update && sudo apt upgrade
 echo "Installing NVM v0.40.1..."
 curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.1/install.sh | bash
 
-export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
+sudo export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
 # Step 2: Source bashrc to make NVM available in the current session
 echo "Sourcing bashrc..."
-source ~/.bashrc
+sudo source ~/.bashrc
 
 # Step 3: Install Node.js v23 using NVM
 echo "Installing Node.js v23..."
-nvm install 23
+sudo nvm install 23
 
 # Step 4: Install the latest version of NPM
 echo "Installing the latest NPM..."
 
 sudo apt install npm
-npm install -g npm
+sudo npm install -g npm
 
 # Step 5: Install the latest version of PNPM
 echo "Installing the latest PNPM..."
-npm install -g pnpm
+sudo npm install -g pnpm
 
 # Step 6: Install XRDP (for remote desktop access)
 echo "Installing XRDP..."
