@@ -47,7 +47,7 @@ const twitterPostTemplate = `
 
 # Task: Generate a post in the voice and style and perspective of {{agentName}} @{{twitterUserName}}.
 Write a post that is {{adjective}} about {{topic}}, from the perspective of {{agentName}}. Do not add commentary or acknowledge this request, just write the post.
-Your response should be 1, 2, or 3 sentences (choose the length at random).
+Your response should be between 1 and 10 sentences (choose the length at random).
 Your response should not contain any questions. Brief, concise statements only. The total character count MUST be less than {{maxTweetLength}}. No emojis. Use \\n\\n (double spaces) between statements if there are multiple statements in your response.`;
 
 export const twitterActionTemplate =
@@ -225,8 +225,8 @@ export class TwitterPostClient {
 
             const lastPostTimestamp = lastPost?.timestamp ?? 0;
 
-            // Set interval to 90 minutes (90 * 60 * 1000 ms)
-            const intervalInMinutes = 90;
+            // Set interval to 30 minutes (30 * 60 * 1000 ms)
+            const intervalInMinutes = 30;
             const delay = intervalInMinutes * 60 * 1000;
 
             if (Date.now() > lastPostTimestamp + delay) {
