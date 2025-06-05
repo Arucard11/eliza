@@ -1,0 +1,13 @@
+diff --git a/package.json b/package.json
+index c25bf27462d71b409b3b118fd0775d89294fd515..521cc37f8bd9e30cdfc28d2fb3d97d95806e654f 100644
+--- a/package.json
++++ b/package.json
+@@ -9,7 +9,7 @@
+   "scripts": {
+     "build": "tsc",
+     "typedoc": "typedoc",
+-    "postinstall": "npm run build && node ./out/postinstall.js",
++    "postinstall": "npx tsc && node ./out/postinstall.js",
+     "prepublish": "npm run build",
+     "test": "echo \"Error: no test specified\" && exit 1"
+   },
